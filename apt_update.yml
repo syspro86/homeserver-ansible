@@ -1,0 +1,9 @@
+- hosts: ubuntu_servers
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: "Update cache & Full system update"
+      apt:
+        update_cache: true
+        cache_valid_time: 3600
+        
