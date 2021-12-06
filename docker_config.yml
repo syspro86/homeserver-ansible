@@ -1,0 +1,16 @@
+- hosts: ubuntu_servers
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: "Docker daemon config"
+      copy:
+        dest: "/etc/docker/daemon.json"
+        content: |
+          {
+            "exec-opts": ["native.cgroupdriver=systemd"],
+            "log-driver": "json-file",
+            "log-opts": {
+              "max-file": "5",
+              "max-size": "10m"
+            }
+          }
